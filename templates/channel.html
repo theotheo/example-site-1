@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% for message in messages %}
+<div class="message">
+    {% if message.photo %}
+        <img src="static/{{ message.photo }}"/>
+    {% endif %}
+
+    {% for entity in message.text_entities %}  
+    <div >
+        {% if entity.type == "bold" %}
+            <h3>   {{ entity.text }}</h3>
+        {% endif %}
+        {% if entity.type == "italic" %}
+            <i>   {{ entity.text }}</i>
+        {% endif %}
+        {{ entity.text }}
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock %}
